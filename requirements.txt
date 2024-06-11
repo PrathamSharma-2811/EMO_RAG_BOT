@@ -1,0 +1,7 @@
+streamlit==1.13.0
+langchain_community==0.1.0
+langchain==0.0.1
+ollama==0.1.0
+base64==1.0.0
+pypdf
+chromadb
