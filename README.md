@@ -1,5 +1,3 @@
-
-```markdown
 # EMO - Personal Emotional Analyzer
 
 ## Project Description
