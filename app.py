@@ -22,7 +22,7 @@ doc = text_splitter.split_documents(doc)
 embeddings = OllamaEmbeddings(model="nomic-embed-text:latest")
 
 vectorstore_disk = Chroma(
-    persist_directory="./chroma_db_2",
+    persist_directory="./chroma_db",
     embedding_function=embeddings
 )
 
