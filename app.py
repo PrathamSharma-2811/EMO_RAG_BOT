@@ -158,4 +158,4 @@ if submit_button and user_input:
     with st.spinner("Processing..."):
         bot_response = gen_response(user_input)
         st.session_state.chat_history.append({'user': False, 'text': bot_response})
-        st.experimental_rerun()  # Rerun to display the updated chat history
+        st.rerun()  # Rerun to display the updated chat history
