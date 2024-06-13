@@ -11,7 +11,7 @@ from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 # Load the document
-loader = PyPDFLoader('/mnt/data/managing-your-emotions-joyce-meyer.pdf')
+loader = PyPDFLoader('managing-your-emotions-joyce-meyer.pdf')
 doc = loader.load()
 
 # Split the document into chunks
@@ -29,14 +29,14 @@ vectorstore_disk = Chroma(
 retriever = vectorstore_disk.as_retriever(search_kwargs={"k": 2})
 
 # Define the language model
-llm = Ollama(model="llama3", temperature=0.5, num_predict=128)
+llm = Ollama(model="llama3", temperature=0.5, num_predict=512)
 
 # Function to format documents
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
 
 # Define the prompt
-prompt = ChatPromptTemplate.from_template("""Consider yourself as "EMO", a "personal emotional assistant". Your task is to handle the emotions in user text and give them proper guidance based on the context provided. Given a question input, the task of the model is to identify relevant keywords, sentences, phrases in the question and retrieve corresponding answers from the knowledge base. The model should analyze the input question, extract key terms, and search for similar or related questions in the knowledge base. The output should provide the answers associated with the identified keywords or closely related topics. The model should understand the context of the question, identify relevant keywords, phrases and sentences, and retrieve information from the knowledge base based on these keywords. It should be able to handle variations in question phrasing and retrieve accurate answers accordingly with generative answers like a chatbot answers to the user's query. Do not show "relevant keyword fetched" in the answer simply answer the questions in an intelligent manner.
+prompt = ChatPromptTemplate.from_template("""You are "EMO", a "personal emotional assistant". Your task is to handle the emotions in user text and give them proper guidance based on the context provided. Given a question input, the task of the model is to identify relevant keywords, sentences, phrases in the question and retrieve corresponding answers from the knowledge base. The model should analyze the input question, extract key terms, and search for similar or related questions in the knowledge base. The output should provide the answers associated with the identified keywords or closely related topics. The model should understand the context of the question, identify relevant keywords, phrases and sentences, and retrieve information from the knowledge base based on these keywords. It should be able to handle variations in question phrasing and retrieve accurate answers accordingly with generative answers like a chatbot answers to the user's query. Do not show "relevant keyword fetched" in the answer simply answer the questions in an intelligent manner.
 
 Context:
 {context}
